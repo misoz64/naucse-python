@@ -221,7 +221,8 @@ def piskvorky1d():
         ...
 
 # Puštění hry!
-piskvorky1d()
+if __name__ == '__main__':
+    piskvorky1d()
 ```
 
 Když tenhle modul naimportuješ, Python v něm postupně, odshora dolů,
@@ -240,27 +241,9 @@ Importuješ-li tenhle modul z testů, `input` selže a import se nepovede.
 > `tah` použít v nějaké jiné hře – uživatel si bude muset v rámci importu
 > zahrát Piškvorky!
 
-Volání funkce `piskvorky1d` je vedlejší efekt, a je potřeba ho odstranit.
-No jo, ale po takovém odstranění
-už nejde jednoduše spustit hra! Co s tím?
+Funkce `piskvorky1d` se spustí jenom pokud je soubor spuštený přímo. Pokud je
+jenom importován, nespustí se.
 
-Můžeš na to vytvořit nový modul.
-Pojmenuj ho `hra.py` a dej do něj jenom to odstraněné volání:
-
-```python
-import piskvorky
-
-piskvorky.piskvorky1d()
-```
-
-Tenhle modul nebudeš moci testovat (protože nepřímo volá funkci `input`),
-ale můžeš ho spustit, když si budeš chtít zahrát.
-Protože k němu nemáš napsané testy, nepoznáš
-z nich, když se takový spouštěcí modul rozbije.
-Měl by být proto nejjednodušší – jeden import a jedno volání.
-
-Původní modul teď můžeš importovat bez obav – ať už z testů nebo z jiných
-modulů.
 Test může vypadat třeba takhle:
 
 ```python
